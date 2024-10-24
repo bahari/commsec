@@ -1,0 +1,73 @@
+Crypto Voice Module Configuration
+
+When the Crypto Voice Module is first powered on, configuration files are
+copied from the SD card into system memory. There are two primary configuration
+files uses by the Crypto Voice Module:
+
+* crypto.ini
+* asound.state
+
+asound.state is used by the system to manage sound card state and is saved
+when the headset or radio volume settings are adjusted.
+
+crypto.ini is used by the Crypto Voice Module software to configure the
+radio system. 
+
+Changes to the in-memory configuration do not immediately take effect. The user
+must explicitly apply the changes using the "Apply Current Settings" option.
+This option does not write the settings to the SD card but notifies the system
+that changes have been made to the system configuration. This option can be
+useful to test changes before saving them to the SD card.
+
+Because the system must be able to operate without an SD card installed in
+the system, changes to the two files listed above are always made to the
+in-memory configuration. Unless the user explicitly saves the settings to the SD
+card, any changes will be lost the next time the system is powered on. This
+option automatically performs an "Apply Current Settings" after the settings
+have been written to the SD card.
+
+It should also go without saying, but if there is no SD card installed in the
+system, attempts to save settings to the SD card will fail.
+
+To revert changes, the "Reinitialize System from SD Card" option will reload the
+configuration files from the SD card. Any changes not written to the SD card
+will be lost. This option automatically performs an "Apply Current Settings"
+after the settings have been loaded from the SD card.
+
+The user can lock the display by selecting "LOCK" or pressing the Escape key
+while in the main menu. This locks the display so settings cannot be viewed or
+changed until the Crypto Voice Module is restarted. If the SD card is not
+installed in the system, it should not be possible to view or change system
+state at all unless a way is found to "jailbreak" out of this mode. The author
+is not aware of any way to do so, but that doesn't mean no way exists.
+
+The "Flash SD Card" Configuration Option allows SD Cards to be programmed with
+Device images in a "Locked" mode where either the Configuration Menu is disabled
+(the "Base Station" configuration) or the display is locked (the "Handheld"
+configuration). The SD Card is also permanently made read-only to prevent
+tampering with the image.
+
+Note that it still may be possible to read the contents of memory through
+hardware probing. If this is a risk then physical measures should be taken to
+reduce the probability of this occurring.
+
+In situations where the severity of harm is high if a key is compromised, it
+should be assumed that anyone with access to a Crypto Voice Module which is
+powered on and/or has the SD card installed can obtain access to the encryption
+key. The intended "fast wipe" method is:
+
+1) Provide a user with a fully powered on Crypto Voice Module with the SD card
+   removed
+2) Instruct the user to physically disconnect power to the Crypto Voice Module
+   to wipe the key
+
+The crypto.ini File
+
+There is a crypto.ini file burned into the system firmware that has a default
+value for each configuration item supported by the system. Then a separate
+user-specific crypto.ini file is loaded from the SD card, and settings
+contained in that file (which can be configured by this utility or by hand)
+override the default values burned into the firmware. To revert back to using
+the default value for a setting burned into the firmware, select the "Default"
+option. This will remove the value from the user-specific crypto.ini file,
+and the system will go back to using the default setting.

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+NAME="initialize.sh"
+DAEMON="/usr/bin/${NAME}"
+
+start()
+{
+	start-stop-daemon -S -b -q -x "${DAEMON}"
+}
+
+case "$1" in
+	start|restart|reload)
+		start
+		;;
+	stop)
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload}" >&2
+		exit 1
+		;;
+esac

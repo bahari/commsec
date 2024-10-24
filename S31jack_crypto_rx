@@ -1,0 +1,55 @@
+#!/bin/sh
+
+NAME="jack_crypto_rx"
+DAEMON="/usr/bin/start_jack_crypto_rx.sh"
+
+start()
+{
+	printf "Starting ${NAME}: "
+	daemon -n ${NAME} -r -L 15 "${DAEMON}"
+	[ $? = 0 ] && echo "OK" || echo "FAIL"
+}
+
+stop()
+{
+	printf "Stopping ${NAME}: "
+	if daemon --stop -n ${NAME}
+	then
+		echo "OK"
+	else
+		echo "FAIL"
+	fi
+}
+
+running()
+{
+	exec daemon --running -n ${NAME}
+}
+
+signal()
+{
+	test -n "$1" && exec daemon --signal="$1" -n "${NAME}"
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	restart|reload)
+		stop
+		start
+		;;
+	running)
+		running
+		;;
+	signal)
+		signal "$2"
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|reload|running|signal}" >&2
+		exit 1
+		;;
+esac
