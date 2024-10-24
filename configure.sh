@@ -790,7 +790,7 @@ assign_audio_devices()
                 # with the actual user port assignments
                 # If the user re-assigns the audio devices after already having
                 # done so, they will have to update the audio volume settings.
-                reload_asound_from_sd
+                #reload_asound_from_sd
                 apply_settings
             fi
 
@@ -1682,7 +1682,7 @@ main_menu()
 
         if dialog \
            --cancel-label "LOCK" \
-           --title "Crypto Voice Module Console Interface" \
+           --title "Crypto Voice Module (COMMSEC) Console Interface" \
            --menu "Select an option." $HEIGHT 60 4 \
            --file /tmp/transmit_opt \
            A "Broadcast TTS Alert" \
