@@ -790,7 +790,7 @@ assign_audio_devices()
                 # with the actual user port assignments
                 # If the user re-assigns the audio devices after already having
                 # done so, they will have to update the audio volume settings.
-                #reload_asound_from_sd
+                reload_asound_from_sd
                 apply_settings
             fi
 
@@ -1624,7 +1624,7 @@ load_keys()
 
 main_menu()
 {
-    export DIALOGOPTS="--backtitle \"Version: $VERSION\""
+    export DIALOGOPTS="--backtitle \"COMMSEC-CRYPTO-Version: $VERSION\""
 
     while true
     do
